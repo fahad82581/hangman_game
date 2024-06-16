@@ -1,0 +1,103 @@
+import random
+word_list = ["apple", "baloon", "carrot"]
+graphic = [
+  """
+   +-------+
+      |       |
+      |       0
+      |      -|-
+      |      / \
+      |
+   ==============
+      
+  """
+      ,
+  """
+  +-------+
+      |       |
+      |       0
+      |      -|-
+      |      /
+      |
+   ==============
+      
+  """
+      ,
+  """
+  +-------+
+  |       |
+  |       0
+  |      -|-
+  |
+  |
+  ==============
+     
+  """
+      ,
+  """
+      +-------+
+      |       |
+      |       0
+      |      -|
+      |
+      |
+   ==============
+  """
+      ,
+  """
+  +-------+
+      |       |
+      |       0
+      |       |
+      |
+      |
+   ==============
+
+  """
+      ,
+  """
+  +-------+
+      |       |
+      |       0
+      | 
+      |
+      |
+   ==============
+     
+  """
+      ,
+  """
+  +-------+
+      |
+      |
+      | 
+      |
+      |
+   ==============
+   
+  """]
+chosen_word=random.choice(word_list)
+lives=len(chosen_word)
+display = []
+for i in range(len(chosen_word)):
+  display += "_"
+print(display)
+game_over = False
+while not game_over:
+  guess = input("Guess a letter: ").lower()
+  for position in range(len(chosen_word)):
+    letter = chosen_word[position]
+    if letter == guess:
+      display[position] = letter
+      print(display)
+
+  if guess not in chosen_word:
+      lives -=1
+      print(graphic[lives])
+      if lives == 0:
+       game_over = True
+       print("You lose.")
+  if '_' not in display:
+      game_over = True
+      print("you win. ")
+      print(graphic[lives])
